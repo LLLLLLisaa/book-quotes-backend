@@ -11,10 +11,10 @@ public class AuthController : ControllerBase
 {
     private readonly AuthService _authService;
 
-        public AuthController(AuthService authService)
-        {
-            _authService = authService;
-        }
+    public AuthController(AuthService authService)
+    {
+        _authService = authService;
+    }
 
 
     [HttpPost("register")]
@@ -22,14 +22,38 @@ public class AuthController : ControllerBase
     {
         bool success = await _authService.Register(request);
 
-        Console.WriteLine(success);
         if (!success)
         {
-            return BadRequest("Email is already registered.");
+            return BadRequest(new
+            {
+                message = "Email is already registered."
+            });
         }
 
-        return Ok();
+        return Ok(new
+        {
+            message = "Registration successful. Please log in."
+        });
     }
+    
+    [HttpPost("login")]
+public async Task<IActionResult> Login(LoginRequest request)
+{
+    bool success = await _authService.Login(request);
+
+    if (!success)
+    {
+        return Unauthorized(new
+        {
+            message = "Invalid email or password."
+        });
+    }
+
+    return Ok(new
+    {
+        message = "Login successful."
+    });
+}
 
 
     

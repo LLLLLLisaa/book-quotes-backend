@@ -43,4 +43,22 @@ public class AuthService
     return true;
 }
 
+    internal async Task<bool> Login(LoginRequest request)
+    {
+         var user = await _context.Users
+        .FirstOrDefaultAsync(u => u.Email == request.Email);
+
+        if (user == null)
+        {
+            return false;
+        }
+
+        var result = _passwordHasher.VerifyHashedPassword(
+            user,
+            user.PasswordHash,
+            request.Password
+        );
+
+        return result == PasswordVerificationResult.Success;
+    }
 }

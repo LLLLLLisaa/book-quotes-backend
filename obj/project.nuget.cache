@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "vudE9JFLkQU=",
+  "dgSpecHash": "oh/GjJ1kJOo=",
   "success": true,
   "projectFilePath": "/Users/liuwei/CODE4Project/book-quotes-backend/book-quotes-backend.csproj",
   "expectedPackageFiles": [
@@ -52,10 +52,7 @@
     "/Users/liuwei/.nuget/packages/system.reflection.metadata/7.0.0/system.reflection.metadata.7.0.0.nupkg.sha512",
     "/Users/liuwei/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/liuwei/.nuget/packages/system.text.json/9.0.8/system.text.json.9.0.8.nupkg.sha512",
-    "/Users/liuwei/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
-    "/Users/liuwei/.nuget/packages/microsoft.netcore.app.ref/9.0.19/microsoft.netcore.app.ref.9.0.19.nupkg.sha512",
-    "/Users/liuwei/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.19/microsoft.aspnetcore.app.ref.9.0.19.nupkg.sha512",
-    "/Users/liuwei/.nuget/packages/microsoft.netcore.app.host.osx-arm64/9.0.19/microsoft.netcore.app.host.osx-arm64.9.0.19.nupkg.sha512"
+    "/Users/liuwei/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512"
   ],
   "logs": []
 }

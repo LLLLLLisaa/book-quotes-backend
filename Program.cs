@@ -1,4 +1,7 @@
 using BookQuotesBackend.Data;
+using BookQuotesBackend.Models;
+using BookQuotesBackend.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -8,6 +11,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(
         builder.Configuration.GetConnectionString("DefaultConnection")
     ));
+
+builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -20,7 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.MapControllers();
 

@@ -80,8 +80,9 @@ public class AuthService
 {
     var claims = new[]
     {
-        new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-        new Claim(ClaimTypes.Email, user.Email)
+        new Claim("id", user.Id.ToString()),
+        new Claim("email", user.Email),
+        new Claim("fullName", user.FullName)
     };
 
     var key = new SymmetricSecurityKey(

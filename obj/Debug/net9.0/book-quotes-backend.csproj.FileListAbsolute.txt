@@ -155,3 +155,11 @@
 /Users/liuwei/CODE4Project/book-quotes-backend/obj/Debug/net9.0/book-quotes-backend.pdb
 /Users/liuwei/CODE4Project/book-quotes-backend/obj/Debug/net9.0/book-quotes-backend.genruntimeconfig.cache
 /Users/liuwei/CODE4Project/book-quotes-backend/obj/Debug/net9.0/ref/book-quotes-backend.dll
+/Users/liuwei/CODE4Project/book-quotes-backend/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/liuwei/CODE4Project/book-quotes-backend/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/liuwei/CODE4Project/book-quotes-backend/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/Users/liuwei/CODE4Project/book-quotes-backend/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/Users/liuwei/CODE4Project/book-quotes-backend/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+/Users/liuwei/CODE4Project/book-quotes-backend/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/Users/liuwei/CODE4Project/book-quotes-backend/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/Users/liuwei/CODE4Project/book-quotes-backend/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll

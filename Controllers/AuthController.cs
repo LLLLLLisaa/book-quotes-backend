@@ -39,9 +39,9 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
 public async Task<IActionResult> Login(LoginRequest request)
 {
-    bool success = await _authService.Login(request);
+    var token = await _authService.Login(request);
 
-    if (!success)
+    if (token == null)
     {
         return Unauthorized(new
         {
@@ -49,9 +49,9 @@ public async Task<IActionResult> Login(LoginRequest request)
         });
     }
 
-    return Ok(new
-    {
-        message = "Login successful."
+        return Ok(new
+        {
+            token = token
     });
 }
 

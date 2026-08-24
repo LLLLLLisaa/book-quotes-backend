@@ -22,28 +22,15 @@ public class BookService
         .Where(book => book.UserId == userId)
         .OrderBy(book => book.Title)
         .ToListAsync();
-
     }
 
     public async Task<Book?> GetBook(int bookId, int userId)
-{
-    return await _context.Books
-        .FirstOrDefaultAsync(book =>
-            book.Id == bookId &&
-            book.UserId == userId
-        );
-}
-
-    internal async Task<bool> DeleteBook(int bookId, int userId)
     {
-        Book? book = await _context.Books.FirstOrDefaultAsync(book => book.Id == bookId && book.UserId == userId);
-        if (book == null)
-        {
-            return false;
-        }
-        _context.Remove(book);
-        await _context.SaveChangesAsync();
-        return true;
+        return await _context.Books
+            .FirstOrDefaultAsync(book =>
+                book.Id == bookId &&
+                book.UserId == userId
+            );
     }
 
     public async Task<Book?> AddBook(BookRequest request, int userId)
@@ -67,7 +54,6 @@ public class BookService
 
         return book;
     }
-
 
     public async Task<Book?> UpdateBook(int bookId, BookRequest request, int userId)
     {
@@ -94,16 +80,28 @@ public class BookService
         return book;
     }
 
+    public async Task<bool> DeleteBook(int bookId, int userId)
+    {
+        Book? book = await _context.Books.FirstOrDefaultAsync(book => book.Id == bookId && book.UserId == userId);
+        if (book == null)
+        {
+            return false;
+        }
+        _context.Remove(book);
+        await _context.SaveChangesAsync();
+        return true;
+    }
+
     private bool TryParsePublicationDate(
     string publicationDate,
     out DateTime parsePublicationDate)
-{
-    return DateTime.TryParseExact(
-        publicationDate,
-        "yyyy.MM.dd",
-        CultureInfo.InvariantCulture,
-        DateTimeStyles.None,
-        out parsePublicationDate
-    );
-}
+    {
+        return DateTime.TryParseExact(
+            publicationDate,
+            "yyyy.MM.dd",
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.None,
+            out parsePublicationDate
+        );
+    }
 }

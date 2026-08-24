@@ -37,23 +37,23 @@ public class AuthController : ControllerBase
     }
     
     [HttpPost("login")]
-public async Task<IActionResult> Login(LoginRequest request)
-{
-    var token = await _authService.Login(request);
-
-    if (token == null)
+    public async Task<IActionResult> Login(LoginRequest request)
     {
-        return Unauthorized(new
+        var token = await _authService.Login(request);
+
+        if (token == null)
         {
-            message = "Invalid email or password."
+            return Unauthorized(new
+            {
+                message = "Invalid email or password."
+            });
+        }
+
+            return Ok(new
+            {
+                token = token
         });
     }
-
-        return Ok(new
-        {
-            token = token
-    });
-}
 
 
     

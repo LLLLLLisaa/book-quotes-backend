@@ -25,6 +25,15 @@ public class BookService
 
     }
 
+    public async Task<Book?> GetBook(int bookId, int userId)
+{
+    return await _context.Books
+        .FirstOrDefaultAsync(book =>
+            book.Id == bookId &&
+            book.UserId == userId
+        );
+}
+
     internal async Task<bool> DeleteBook(int bookId, int userId)
     {
         Book? book = await _context.Books.FirstOrDefaultAsync(book => book.Id == bookId && book.UserId == userId);

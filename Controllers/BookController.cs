@@ -28,6 +28,21 @@ public class BooksController : ControllerBase
         return Ok(books);
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetBook(int id)
+    {
+        var userId = int.Parse(User.FindFirst("id")!.Value);
+
+        var book = await _bookService.GetBook(id, userId);
+
+        if (book == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(book);
+    }
+
     [HttpPost]
     public async Task<IActionResult> AddBook(BookRequest request)
     {

@@ -35,6 +35,14 @@ public class BooksController : ControllerBase
 
         var book = await _bookService.AddBook(request, userId);
 
+        if (book == null)
+        {
+            return BadRequest(new
+            {
+                message = "Publication date must use yyyy.MM.dd format."
+            });
+        }
+
         return Ok(book);
     }
 
@@ -45,16 +53,19 @@ public class BooksController : ControllerBase
     {
         var userId = int.Parse(User.FindFirst("id")!.Value);
 
-        var success = await _bookService.UpdateBook(
+        var book = await _bookService.UpdateBook(
             id,
             request,
             userId
         );
 
-        if (!success)
-        {
-            return NotFound();
-        }
+        if (book == null)
+{
+            return BadRequest(new
+            {
+                message = "Book not found or publication date must use yyyy.MM.dd format."
+            });
+}
 
         return Ok(new
         {

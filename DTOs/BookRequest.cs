@@ -6,5 +6,7 @@ public class BookRequest
 
     public string Author { get; set; } = string.Empty;
 
-    public DateTime PublishedDate { get; set; }
+    //public DateTime PublishedDate { get; set; }
+
+    public string PublishedDate { get; set; } = string.Empty;
 }

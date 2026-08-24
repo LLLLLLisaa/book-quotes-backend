@@ -3,6 +3,7 @@ using BookQuotesBackend.DTOs;
 using BookQuotesBackend.Data;
 using BookQuotesBackend.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 
 namespace BookQuotesBackend.Services;
@@ -36,40 +37,64 @@ public class BookService
         return true;
     }
 
-    public async Task<Book> AddBook(BookRequest request, int userId)
+    public async Task<Book?> AddBook(BookRequest request, int userId)
     {
+        if (!TryParsePublicationDate(request.PublishedDate, out DateTime publicationDate))
+        {
+            Console.WriteLine($"Invalid publication date: {request.PublishedDate}");
+            return null;
+        }
+
         Book book = new Book
         {
             Title = request.Title,
             Author = request.Author,
-            PublicationDate = request.PublishedDate,
+            PublicationDate = publicationDate,
             UserId = userId
         };
 
         _context.Books.Add(book);
-
         await _context.SaveChangesAsync();
 
         return book;
     }
 
 
-    public async Task<bool> UpdateBook(int bookId, BookRequest request, int userId)
+    public async Task<Book?> UpdateBook(int bookId, BookRequest request, int userId)
     {
-        Book? book = await _context.Books.FirstOrDefaultAsync(book => book.Id == bookId && book.UserId == userId);
+        Book? book = await _context.Books
+            .FirstOrDefaultAsync(book => book.Id == bookId && book.UserId == userId);
+
         if (book == null)
         {
-            return false;
+            return null;
+        }
+
+        if (!TryParsePublicationDate(request.PublishedDate, out DateTime publicationDate))
+        {
+            Console.WriteLine($"Invalid publication date: {request.PublishedDate}");
+            return null;
         }
 
         book.Title = request.Title;
         book.Author = request.Author;
-        book.PublicationDate = request.PublishedDate;
-        book.UserId = userId;
+        book.PublicationDate = publicationDate;
 
         await _context.SaveChangesAsync();
 
-        return true;
-
+        return book;
     }
+
+    private bool TryParsePublicationDate(
+    string publishedDate,
+    out DateTime publicationDate)
+{
+    return DateTime.TryParseExact(
+        publishedDate,
+        "yyyy.MM.dd",
+        CultureInfo.InvariantCulture,
+        DateTimeStyles.None,
+        out publicationDate
+    );
+}
 }

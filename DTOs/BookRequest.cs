@@ -8,5 +8,5 @@ public class BookRequest
 
     //public DateTime PublishedDate { get; set; }
 
-    public string PublishedDate { get; set; } = string.Empty;
+    public string PublicationDate { get; set; } = string.Empty;
 }

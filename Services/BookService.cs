@@ -39,9 +39,9 @@ public class BookService
 
     public async Task<Book?> AddBook(BookRequest request, int userId)
     {
-        if (!TryParsePublicationDate(request.PublishedDate, out DateTime publicationDate))
+        if (!TryParsePublicationDate(request.PublicationDate, out DateTime publicationDate))
         {
-            Console.WriteLine($"Invalid publication date: {request.PublishedDate}");
+            Console.WriteLine($"Invalid publication date: {request.PublicationDate}");
             return null;
         }
 
@@ -70,9 +70,9 @@ public class BookService
             return null;
         }
 
-        if (!TryParsePublicationDate(request.PublishedDate, out DateTime publicationDate))
+        if (!TryParsePublicationDate(request.PublicationDate, out DateTime publicationDate))
         {
-            Console.WriteLine($"Invalid publication date: {request.PublishedDate}");
+            Console.WriteLine($"Invalid publication date: {request.PublicationDate}");
             return null;
         }
 
@@ -86,15 +86,15 @@ public class BookService
     }
 
     private bool TryParsePublicationDate(
-    string publishedDate,
-    out DateTime publicationDate)
+    string publicationDate,
+    out DateTime parsePublicationDate)
 {
     return DateTime.TryParseExact(
-        publishedDate,
+        publicationDate,
         "yyyy.MM.dd",
         CultureInfo.InvariantCulture,
         DateTimeStyles.None,
-        out publicationDate
+        out parsePublicationDate
     );
 }
 }

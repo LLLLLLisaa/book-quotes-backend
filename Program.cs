@@ -51,7 +51,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAngular", policy =>
     {
         policy
-            .WithOrigins("http://localhost:4200")
+            .WithOrigins(
+                "http://localhost:4200",
+                "https://book-quotes-frontend.vercel.app"
+                )
             //.AllowAnyOrigin  //if not sure origins and just for test only
             .AllowAnyHeader()
             .AllowAnyMethod();

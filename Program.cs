@@ -86,11 +86,13 @@ builder.Services.AddSwaggerGen(options =>
 var app = builder.Build();
 
 // Swagger
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI();
+/* if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+} */
 
 // Middleware
 app.UseCors("AllowAngular");
@@ -98,6 +100,7 @@ app.UseCors("AllowAngular");
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapGet("/", () => Results.Redirect("/swagger"));
 app.MapControllers();
 
 app.Run();

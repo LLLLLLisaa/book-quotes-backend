@@ -28,3 +28,17 @@ After starting the application, open the Swagger URL displayed in the terminal.
 
 ## Database
 - SQLite
+
+## Live Demo
+
+Backend API:
+https://book-quotes-backend-production.up.railway.app
+
+Swagger UI:
+https://book-quotes-backend-production.up.railway.app/swagger
+
+The root URL redirects directly to Swagger UI.
+
+## Deployment Note
+
+The online demo uses SQLite without persistent storage. Data created in the deployed environment may be reset if the Railway container is recreated or restarted.
